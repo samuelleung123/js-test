@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="module">
+    import {test} from "./utils.js";
+
+    function fetch_data_1() {
+        return new Promise(resolve => setTimeout(resolve, 500));
+    }
+
+    function fetch_data_2() {
+        return new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    function fetch_data_3() {
+        return new Promise(resolve => setTimeout(resolve, 1500));
+    }
+
+
+    await test('await each', async () => {
+        await fetch_data_1();
+        await fetch_data_2();
+        await fetch_data_3();
+    })
+
+    await test('await after return', async () => {
+        let f_p_1 = fetch_data_1();
+        let f_p_2 = fetch_data_2();
+        let f_p_3 = fetch_data_3();
+
+        await f_p_1;
+        await f_p_2;
+        await f_p_3;
+    })
+
+
+
+</script>
+</html>
